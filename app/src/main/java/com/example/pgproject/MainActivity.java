@@ -13,7 +13,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -25,46 +25,56 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SearchView search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.pgList);
-        String url = "http://192.168.56.1/pg/api.php";
+        String url = "http://192.168.128.36/pg/api.php";
         ArrayList<PGDetailsModel> pgList = new ArrayList<>();
+
         // Create a request queue
-        RequestQueue queue = Volley.newRequestQueue(this);
         PgDetailsAdapter adapter = new PgDetailsAdapter(getApplicationContext(), pgList);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(JSONArray response) {
                         try {
+                            Toast.makeText(MainActivity.this, "Response received", Toast.LENGTH_SHORT).show();
                             // Parse the JSON response
-                            JSONArray jsonArray = response.getJSONArray("data");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
                                 // Extract data from JSON object
-                                int pgId = Integer.parseInt(jsonObject.getString("pgId"));
+                                int pgId = jsonObject.getInt("id");
                                 String pgName = jsonObject.getString("pgName");
-                                String pgCollege = jsonObject.getString("pgCollege");
-                                String pgUnivercity = jsonObject.getString("pgUnivercity");
                                 String pgType = jsonObject.getString("pgType");
-                                int pgPrice = Integer.parseInt(jsonObject.getString("pgPrice"));
-                                long pgNumber = Long.parseLong(jsonObject.getString("pgNumber"));
-                                int beds = Integer.parseInt(jsonObject.getString("beds"));
-                                int persons = Integer.parseInt(jsonObject.getString("persons"));
-                                boolean food = Boolean.parseBoolean(jsonObject.getString("food"));
-                                boolean washingMachine = Boolean.parseBoolean(jsonObject.getString("washingMachine"));
-                                boolean wifi = Boolean.parseBoolean(jsonObject.getString("wi-fi"));
-                                boolean ac = Boolean.parseBoolean(jsonObject.getString("a.c."));
-                                String image = jsonObject.getString("pgImage");
+                                String pgCollege = jsonObject.getString("pgCollege");
+                                String pgUniversity = jsonObject.getString("pgUniversity");
 
-                                PGDetailsModel pgDetails = new PGDetailsModel(pgId, pgName, pgType, pgCollege, pgUnivercity, pgPrice, pgNumber, image, beds, persons, food, washingMachine, wifi, ac);
+                                // Parse pgPrice as String and extract numeric part
+                                String pgPriceString = jsonObject.getString("pgPrice");
+                                // Remove currency symbol and commas, then parse as int
+                                int pgPrice = Integer.parseInt(pgPriceString.replaceAll("[^0-9]", ""));
+
+                                long pgNumber = jsonObject.getLong("pgNumber");
+                                int beds = jsonObject.getInt("beds");
+                                int persons = jsonObject.getInt("person");
+                                boolean food = jsonObject.getInt("food") == 1;
+                                boolean washingMachine = jsonObject.getInt("washingMachine") == 1;
+                                boolean wifi = jsonObject.getInt("wifi") == 1;
+                                boolean ac = jsonObject.getInt("ac") == 1;
+                                String image = jsonObject.getString("pImage");
+                                // Create PGDetailsModel object and add to pgList
+                                PGDetailsModel pgDetails = new PGDetailsModel(pgId, pgName, pgType, pgCollege, pgUniversity, pgPrice, pgNumber, image, beds, persons, food, washingMachine, wifi, ac);
                                 pgList.add(pgDetails);
                             }
+
+                            // Notify adapter or update UI here with the new data
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -74,14 +84,12 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Handle error
-                        Log.d("Fetch error", "Problem while fetching data " + error.getMessage());
-                        Toast.makeText(MainActivity.this, "Error while fetching data", Toast.LENGTH_SHORT).show();
+                        Log.e("Fetch error", "Problem while fetching data " + error);
+                        Toast.makeText(MainActivity.this, "Error while fetching data" + error, Toast.LENGTH_SHORT).show();
                     }
                 });
 
-        // Add the request to the queue
         queue.add(request);
         recyclerView.setAdapter(adapter);
-
     }
 }
