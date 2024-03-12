@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.pgList);
-        String url = "http://192.168.128.36/pg/api.php";
+        String url = "http://192.168.43.42/pg/api.php";
         ArrayList<PGDetailsModel> pgList = new ArrayList<>();
 
         // Create a request queue
-        PgDetailsAdapter adapter = new PgDetailsAdapter(getApplicationContext(), pgList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         queue.add(request);
+        PgDetailsAdapter adapter = new PgDetailsAdapter(getApplicationContext(), pgList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
     }
 }

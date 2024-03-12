@@ -36,11 +36,10 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PGDetailsModel pgDetails = pgList.get(position);
         holder.pgName.setText(pgDetails.getpName());
-        holder.pgPrice.setText(String.valueOf(pgDetails.getPgPrice()) + " ₹");
+        holder.pgPrice.setText(String.valueOf(pgDetails.getPgPrice()));
         holder.pgAddress.setText(pgDetails.getPgCollege());
-        holder.beds.setText(String.valueOf(pgDetails.getBeds()) + " Beds");
+        holder.beds.setText(String.valueOf(pgDetails.getBeds()));
 
-        // Load image using Glide
         Picasso.get().load(pgList.get(position).getImage()).into(holder.pgImage);
     }
 
