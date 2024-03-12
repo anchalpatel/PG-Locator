@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.squareup.picasso.Picasso;
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -19,8 +18,12 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.View
 
     private Context context;
     private ArrayList<PGDetailsModel> pgList;
+    private OnItemClickListener listener;
 
-    public PgDetailsAdapter(Context context, ArrayList<PGDetailsModel> pgList) {
+    public  interface OnItemClickListener{
+        void onItemClick(int position);
+    }
+    public PgDetailsAdapter(Context context, ArrayList<PGDetailsModel> pgList, OnItemClickListener onItemClickListener) {
         this.context = context;
         this.pgList = pgList;
     }
@@ -29,6 +32,17 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.pgcard, parent, false);
+        int height = (int) 800/* set your desired height */;
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height));
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = (int) v.getTag();
+                if(position!=RecyclerView.NO_POSITION && listener!=null){
+                    listener.onItemClick(position);
+                }
+            }
+        });
         return new ViewHolder(view);
     }
 
@@ -36,11 +50,27 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PGDetailsModel pgDetails = pgList.get(position);
         holder.pgName.setText(pgDetails.getpName());
-        holder.pgPrice.setText(String.valueOf(pgDetails.getPgPrice()));
+        holder.pgPrice.setText(String.valueOf(pgDetails.getPgPrice()) + " ₹");
         holder.pgAddress.setText(pgDetails.getPgCollege());
-        holder.beds.setText(String.valueOf(pgDetails.getBeds()));
+        holder.beds.setText(String.valueOf(pgDetails.getBeds()) + " Beds");
+        Glide.with(context)
+                .load(pgDetails.getImage())
+                .into(holder.pgImage);
 
-        Picasso.get().load(pgList.get(position).getImage()).into(holder.pgImage);
+//        Picasso.get().load(pgDetails.getImage()).into(holder.pgImage, new Callback() {
+//            @Override
+//            public void onSuccess() {
+//                // Image loaded successfully
+//                Log.d("Picasso", "Image loaded successfully");
+//            }
+//
+//            @Override
+//            public void onError(Exception e) {
+//                // Handle error
+//                Log.e("Picasso", "Error loading image: " + e.getMessage());
+//            }
+//        });
+
     }
 
     @Override
