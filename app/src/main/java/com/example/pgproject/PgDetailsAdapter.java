@@ -27,6 +27,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.View
     public PgDetailsAdapter(Context context, ArrayList<PGDetailsModel> pgList) {
         this.context = context;
         this.pgList = pgList;
+        this.listener = onItemClickListener;
     }
 
     @NonNull
@@ -51,6 +52,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PGDetailsModel pgDetails = pgList.get(position);
         holder.pgName.setText(pgDetails.getpName());
+        holder.itemView.setTag(position);
         holder.pgPrice.setText(String.valueOf(pgDetails.getPgPrice()) + " ₹");
         holder.pgAddress.setText(pgDetails.getPgCollege());
         holder.beds.setText(String.valueOf(pgDetails.getBeds()) + " Beds");
