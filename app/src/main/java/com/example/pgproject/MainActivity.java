@@ -5,7 +5,6 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -16,7 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +25,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     SearchView search;
-    PgDetailsAdapter adapter;
-    ArrayList<PGDetailsModel> pgList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,37 +32,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.pgList);
-        search = findViewById(R.id.search);
-
-        // Initialize pgList
-        pgList = new ArrayList<>();
-
-        // Initialize adapter
-        adapter = new PgDetailsAdapter(getApplicationContext(), pgList, new PgDetailsAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                // Handle item click
-                PGDetailsModel pgDetails = pgList.get(position);
-                Gson gson = new Gson();
-                String pgDetailsJson = gson.toJson(pgDetails);
-
-                // Start PgDescriptionActivity and pass the JSON string as an extra
-                Intent pgDescription = new Intent(MainActivity.this, PgDescriptionActivity.class);
-                pgDescription.putExtra("pgModelJson", pgDetailsJson);
-                startActivity(pgDescription);
-            }
-        });
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-
-        // Fetch data from server
-        fetchDataFromServer();
-    }
-
-    private void fetchDataFromServer() {
-        String url = "http://192.168.43.42/pg/api.php";
+        String url = "http://192.168.137.16/pg/api.php";
+        ArrayList<PGDetailsModel> pgList = new ArrayList<>();
 
         // Create a request queue
+        PgDetailsAdapter adapter = new PgDetailsAdapter(getApplicationContext(), pgList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         RequestQueue queue = Volley.newRequestQueue(this);
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -74,33 +45,35 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         try {
                             Toast.makeText(MainActivity.this, "Response received", Toast.LENGTH_SHORT).show();
-                            // Clear previous data
-                            pgList.clear();
                             // Parse the JSON response
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
-                                // Extract data from JSON object and add to pgList
-                                // (Assuming PGDetailsModel constructor and setters are defined appropriately)
-                                //Log.d("Image url :", jsonObject.getString("pImage"));
-                                PGDetailsModel pgDetails = new PGDetailsModel(
-                                        jsonObject.getInt("id"),
-                                        jsonObject.getString("pgName"),
-                                        jsonObject.getString("pgType"),
-                                        jsonObject.getString("pgCollege"),
-                                        jsonObject.getString("pgUniversity"),
-                                        Integer.parseInt(jsonObject.getString("pgPrice").replaceAll("[^0-9]", "")),
-                                        jsonObject.getLong("pgNumber"),
-                                        jsonObject.getString("pImage"),
-                                        jsonObject.getInt("beds"),
-                                        jsonObject.getInt("person"),
-                                        jsonObject.getInt("food") == 1,
-                                        jsonObject.getInt("washingMachine") == 1,
-                                        jsonObject.getInt("wifi") == 1,
-                                        jsonObject.getInt("ac") == 1
-                                );
+                                // Extract data from JSON object
+                                int pgId = jsonObject.getInt("id");
+                                String pgName = jsonObject.getString("pgName");
+                                String pgType = jsonObject.getString("pgType");
+                                String pgCollege = jsonObject.getString("pgCollege");
+                                String pgUniversity = jsonObject.getString("pgUniversity");
+
+                                // Parse pgPrice as String and extract numeric part
+                                String pgPriceString = jsonObject.getString("pgPrice");
+                                // Remove currency symbol and commas, then parse as int
+                                int pgPrice = Integer.parseInt(pgPriceString.replaceAll("[^0-9]", ""));
+
+                                long pgNumber = jsonObject.getLong("pgNumber");
+                                int beds = jsonObject.getInt("beds");
+                                int persons = jsonObject.getInt("person");
+                                boolean food = jsonObject.getInt("food") == 1;
+                                boolean washingMachine = jsonObject.getInt("washingMachine") == 1;
+                                boolean wifi = jsonObject.getInt("wifi") == 1;
+                                boolean ac = jsonObject.getInt("ac") == 1;
+                                String image = jsonObject.getString("pImage");
+                                // Create PGDetailsModel object and add to pgList
+                                PGDetailsModel pgDetails = new PGDetailsModel(pgId, pgName, pgType, pgCollege, pgUniversity, pgPrice, pgNumber, image, beds, persons, food, washingMachine, wifi, ac);
                                 pgList.add(pgDetails);
                             }
-                            // Notify adapter of data change
+
+                            // Notify adapter or update UI here with the new data
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -116,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-        // Add request to the queue
         queue.add(request);
+        recyclerView.setAdapter(adapter);
     }
 }
