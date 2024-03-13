@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchDataFromServer() {
-        String url = "http://192.168.43.42/pg/api.php";
+        String url = "http://192.168.51.36/pg/api.php";
 
         // Create a request queue
         RequestQueue queue = Volley.newRequestQueue(this);

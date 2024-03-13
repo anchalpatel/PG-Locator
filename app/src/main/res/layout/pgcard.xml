@@ -6,9 +6,10 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-
-        android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_width="379dp"
+        android:layout_height="187dp"
+        android:background="#f2f2f2"
+        android:layout_marginLeft="15dp"
         app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -17,11 +18,10 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="153dp"
-            android:layout_height="150dp"
+            android:layout_width="150dp"
+            android:layout_height="153dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp" />
-
 
         <LinearLayout
             android:id="@+id/cardDetail"
@@ -36,7 +36,6 @@
                 android:id="@+id/pName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -44,7 +43,6 @@
                 android:id="@+id/pAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:textSize="18sp" />
 
             <TextView
