@@ -7,6 +7,7 @@ public class PGDetailsModel {
     String pgCollege;
     String pgUniversity;
     int pgPrice;
+    String pgAddress;
     long pgNumber;
 
     String image;
@@ -17,13 +18,23 @@ public class PGDetailsModel {
     boolean ac;
     boolean wifi;
 
-    public PGDetailsModel(int id, String pName, String pgType, String pgCollege, String pgUniversity, int pgPrice, long pgNumber, String image, int beds, int person, boolean food, boolean washingMachine, boolean ac, boolean wifi) {
+    public String getPgAddress() {
+        return pgAddress;
+    }
+
+    public void setPgAddress(String pgAddress) {
+        this.pgAddress = pgAddress;
+    }
+
+
+    public PGDetailsModel(int id, String pName, String pgType, String pgCollege, String pgUniversity, int pgPrice, String pgAddress, long pgNumber, String image, int beds, int person, boolean food, boolean washingMachine, boolean ac, boolean wifi) {
         this.id = id;
         this.pName = pName;
         this.pgType = pgType;
         this.pgCollege = pgCollege;
         this.pgUniversity = pgUniversity;
         this.pgPrice = pgPrice;
+        this.pgAddress = pgAddress;
         this.pgNumber = pgNumber;
         this.image = image;
         this.beds = beds;

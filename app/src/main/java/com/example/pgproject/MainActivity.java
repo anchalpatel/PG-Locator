@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         adapter = new PgDetailsAdapter(getApplicationContext(), pgList, new PgDetailsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                // Handle item click
                 PGDetailsModel pgDetails = pgList.get(position);
                 Gson gson = new Gson();
                 String pgDetailsJson = gson.toJson(pgDetails);
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchDataFromServer() {
-        String url = "http://192.168.51.36/pg/api.php";
+        String url = "http://192.168.154.36/pg/api.php";
 
         // Create a request queue
         RequestQueue queue = Volley.newRequestQueue(this);
@@ -89,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                                         jsonObject.getString("pgCollege"),
                                         jsonObject.getString("pgUniversity"),
                                         Integer.parseInt(jsonObject.getString("pgPrice").replaceAll("[^0-9]", "")),
+                                        jsonObject.getString("pgAddress"),
                                         jsonObject.getLong("pgNumber"),
                                         jsonObject.getString("pImage"),
                                         jsonObject.getInt("beds"),

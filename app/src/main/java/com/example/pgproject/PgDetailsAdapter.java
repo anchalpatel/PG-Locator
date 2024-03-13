@@ -33,7 +33,7 @@ public class PgDetailsAdapter extends RecyclerView.Adapter<PgDetailsAdapter.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.pgcard, parent, false);
-        int height = (int) 800/* set your desired height */;
+        int height = (int) 300/* set your desired height */;
         view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height));
         view.setOnClickListener(new View.OnClickListener() {
             @Override

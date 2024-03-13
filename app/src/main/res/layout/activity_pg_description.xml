@@ -4,6 +4,549 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PgDescriptionActivity">
+    android:background="#ffffff"
+    android:orientation="vertical"
+    >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="37dp"
+        android:scrollbars="none"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/pgimage"
+                android:layout_width="355dp"
+                android:layout_height="195dp"
+                app:srcCompat="@drawable/img"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="27dp"
+                tools:layout_editor_absoluteY="71dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="361dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="#f2f2f2"
+                android:layout_marginLeft="20dp"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/pgname"
+                        android:layout_width="186dp"
+                        android:layout_height="21dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/inter"
+                        android:gravity="center_horizontal"
+                        android:text="Urban Haven PG"
+                        android:textColor="#004643"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/pg_rent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#004643"
+                        android:textSize="12sp"
+                        android:textStyle="normal" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/pg_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="37dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Chandkheda, Ahmedabad"
+                    android:textColor="#004643"
+                    android:textSize="12sp"
+                    android:textStyle="normal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="389dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints"
+                >
+
+                <TextView
+                    android:layout_width="111dp"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="24dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:text="Available facilities" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="184dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/wifi" />
+
+                        <TextView
+                            android:id="@+id/wifi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="7dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="High Speed WiFi"
+                            android:textColor="#004643"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="184dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/bb" />
+
+                        <TextView
+                            android:id="@+id/AC"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="25dp"
+                            android:layout_marginTop="6dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Ac + Non AC Rooms"
+                            android:textColor="#004643"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="184dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/food" />
+
+                        <TextView
+                            android:id="@+id/tiffin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Tiffin Service Available"
+                            android:textColor="#004643"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="184dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/laundry" />
+
+                        <TextView
+                            android:id="@+id/laundry"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="6dp"
+                            android:layout_weight="3"
+                            android:text="Laundry Facilities" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginBottom="7dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="184dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/girl" />
+
+                        <TextView
+                            android:id="@+id/pg_girls"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="3"
+                            android:text="For Girls" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="184dp"
+                        android:layout_height="35dp"
+                        android:layout_marginRight="25dp"
+                        android:layout_weight="1"
+                        android:background="#f2f2f2"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginLeft="9dp"
+                            android:layout_marginTop="6dp"
+                            android:src="@drawable/girl" />
+
+                        <TextView
+                            android:id="@+id/pg_boys"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_weight="3"
+                            android:text="For Boys" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="379dp"
+                android:layout_height="48dp"
+                android:orientation="vertical"
+                tools:ignore="MissingConstraints"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="34dp"
+                    android:layout_marginTop="14dp"
+                    android:text="Beds Available"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/single"
+                        android:layout_width="100dp"
+                        app:cardElevation="3dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17dp">
+
+                        <LinearLayout
+                            android:layout_width="95dp"
+                            android:layout_height="123dp"
+                            android:layout_marginTop="2dp"
+                            android:background="#f2f2f2"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Single Accomodation"
+                                android:textColor="#004643"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="53.8dp"
+                                android:layout_height="51dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="6dp"
+                                android:background="#ffffff"
+                                android:src="@drawable/single" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="No beds available"
+                                android:textColor="#004643"
+                                android:textSize="8sp" />
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/double_sharing"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="6dp">
+
+                        <LinearLayout
+                            android:layout_width="95dp"
+                            android:layout_height="121dp"
+                            android:layout_marginTop="2dp"
+                            android:background="#f2f2f2"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Double Sharing"
+                                android:textColor="#004643"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="53.8dp"
+                                android:layout_height="51dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="6dp"
+                                android:background="#ffffff"
+                                android:src="@drawable/single" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="4 beds available"
+                                android:textColor="#004643"
+                                android:textSize="8sp" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/four_sharing"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="6dp">
+
+                        <LinearLayout
+                            android:layout_width="95dp"
+                            android:layout_height="124dp"
+                            android:layout_marginTop="2dp"
+                            android:background="#f2f2f2"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Double Sharing"
+                                android:textColor="#004643"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:layout_width="53.8dp"
+                                android:layout_height="51dp"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="6dp"
+                                android:background="#ffffff"
+                                android:src="@drawable/multiple" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="4 beds available"
+                                android:textColor="#004643"
+                                android:textSize="8sp" />
+
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="210dp"
+                    android:layout_height="36dp"
+                    android:layout_marginLeft="23dp"
+                    android:layout_marginTop="20dp"
+                    android:text="Contact Information"
+                    android:textColor="#004643"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <GridLayout
+                    android:layout_width="367dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginRight="27dp"
+                    android:layout_marginBottom="18dp"
+                    android:columnCount="2">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/mobile" />
+
+                        <TextView
+                            android:id="@+id/phone_no"
+                            android:layout_width="87dp"
+                            android:layout_height="23dp"
+                            android:text="12345XYZPQR"
+                            android:textColor="#004643"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
+                    </LinearLayout>
+
+                </GridLayout>
+
+                <TextView
+                    android:layout_width="112dp"
+                    android:layout_height="22dp"
+                    android:layout_marginLeft="23dp"
+                    android:text="Address"
+                    android:textColor="#004643"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="326dp"
+                    android:layout_height="112dp"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="27dp"
+                    android:layout_marginRight="27dp"
+                    android:layout_marginBottom="18dp"
+                    android:background="#e0f4ff"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginLeft="28dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="28dp"
+                        android:layout_marginBottom="5dp"
+
+                        >
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/location2" />
+
+                        <TextView
+                            android:layout_width="258.9dp"
+                            android:layout_height="27.9dp"
+                            android:text="Vardhman Society, near VGEC, Chandkheda,Ahmedabad "
+                            android:textColor="#004643"
+                            android:textSize="12sp"
+                            android:textStyle="normal" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
