@@ -1,55 +1,53 @@
 package com.example.pgproject;
 
 public class PGDetailsModel {
-    int id;
+    String id;
     String pName;
-    String pgType;
+    String forBoys;
+    String forGirls;
     String pgCollege;
     String pgUniversity;
-    int pgPrice;
+    String pgPrice;
     String pgAddress;
-    long pgNumber;
+    String pgNumber;
 
     String image;
-    int beds;
-    int person;
-    boolean food;
-    boolean WashingMachine;
-    boolean ac;
-    boolean wifi;
 
-    public String getPgAddress() {
-        return pgAddress;
-    }
+    String person;
+    String food;
+    String WashingMachine;
+    String ac;
+    String wifi;
+    String singleBed;
+    String doubleBed;
+    String multipleBed;
 
-    public void setPgAddress(String pgAddress) {
-        this.pgAddress = pgAddress;
-    }
-
-
-    public PGDetailsModel(int id, String pName, String pgType, String pgCollege, String pgUniversity, int pgPrice, String pgAddress, long pgNumber, String image, int beds, int person, boolean food, boolean washingMachine, boolean ac, boolean wifi) {
+    public PGDetailsModel(String id, String pName, String forBoys, String forGirls, String pgCollege, String pgUniversity, String pgPrice, String pgAddress, String pgNumber, String image, String person, String food, String washingMachine, String ac, String wifi, String singleBed, String doubleBed, String multipleBed) {
         this.id = id;
         this.pName = pName;
-        this.pgType = pgType;
+        this.forBoys = forBoys;
+        this.forGirls = forGirls;
         this.pgCollege = pgCollege;
         this.pgUniversity = pgUniversity;
         this.pgPrice = pgPrice;
         this.pgAddress = pgAddress;
         this.pgNumber = pgNumber;
         this.image = image;
-        this.beds = beds;
         this.person = person;
         this.food = food;
-        this.WashingMachine = washingMachine;
+        WashingMachine = washingMachine;
         this.ac = ac;
         this.wifi = wifi;
+        this.singleBed = singleBed;
+        this.doubleBed = doubleBed;
+        this.multipleBed = multipleBed;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -61,12 +59,20 @@ public class PGDetailsModel {
         this.pName = pName;
     }
 
-    public String getPgType() {
-        return pgType;
+    public String getForBoys() {
+        return forBoys;
     }
 
-    public void setPgType(String pgType) {
-        this.pgType = pgType;
+    public void setForBoys(String forBoys) {
+        this.forBoys = forBoys;
+    }
+
+    public String getForGirls() {
+        return forGirls;
+    }
+
+    public void setForGirls(String forGirls) {
+        this.forGirls = forGirls;
     }
 
     public String getPgCollege() {
@@ -85,19 +91,27 @@ public class PGDetailsModel {
         this.pgUniversity = pgUniversity;
     }
 
-    public int getPgPrice() {
+    public String getPgPrice() {
         return pgPrice;
     }
 
-    public void setPgPrice(int pgPrice) {
+    public void setPgPrice(String pgPrice) {
         this.pgPrice = pgPrice;
     }
 
-    public long getPgNumber() {
+    public String getPgAddress() {
+        return pgAddress;
+    }
+
+    public void setPgAddress(String pgAddress) {
+        this.pgAddress = pgAddress;
+    }
+
+    public String getPgNumber() {
         return pgNumber;
     }
 
-    public void setPgNumber(long pgNumber) {
+    public void setPgNumber(String pgNumber) {
         this.pgNumber = pgNumber;
     }
 
@@ -109,54 +123,67 @@ public class PGDetailsModel {
         this.image = image;
     }
 
-    public int getBeds() {
-        return beds;
-    }
-
-    public void setBeds(int beds) {
-        this.beds = beds;
-    }
-
-    public int getPerson() {
+    public String getPerson() {
         return person;
     }
 
-    public void setPerson(int person) {
+    public void setPerson(String person) {
         this.person = person;
     }
 
-    public boolean isFood() {
+    public String getFood() {
         return food;
     }
 
-    public void setFood(boolean food) {
+    public void setFood(String food) {
         this.food = food;
     }
 
-    public boolean isWashingMachine() {
+    public String getWashingMachine() {
         return WashingMachine;
     }
 
-    public void setWashingMachine(boolean washingMachine) {
+    public void setWashingMachine(String washingMachine) {
         WashingMachine = washingMachine;
     }
 
-    public boolean isAc() {
+    public String getAc() {
         return ac;
     }
 
-    public void setAc(boolean ac) {
+    public void setAc(String ac) {
         this.ac = ac;
     }
 
-    public boolean isWifi() {
+    public String getWifi() {
         return wifi;
     }
 
-    public void setWifi(boolean wifi) {
+    public void setWifi(String wifi) {
         this.wifi = wifi;
     }
 
+    public String getSingleBed() {
+        return singleBed;
+    }
 
+    public void setSingleBed(String singleBed) {
+        this.singleBed = singleBed;
+    }
 
+    public String getDoubleBed() {
+        return doubleBed;
+    }
+
+    public void setDoubleBed(String doubleBed) {
+        this.doubleBed = doubleBed;
+    }
+
+    public String getMultipleBed() {
+        return multipleBed;
+    }
+
+    public void setMultipleBed(String multipleBed) {
+        this.multipleBed = multipleBed;
+    }
 }

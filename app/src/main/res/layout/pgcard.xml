@@ -1,73 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="12dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/img"
-                android:layout_gravity="center_vertical"
-                android:padding="10dp"
-                android:layout_width="110dp"
-                android:layout_height="110dp"
-                android:layout_margin="2dp"/>
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="49dp"
+        android:layout_margin="12dp"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="10dp">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="150dp"
+                    android:layout_height="205dp"
+                    android:adjustViewBounds="true"
+
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.485" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:id="@+id/cardDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="210dp"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/pName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Urban Heaven PG"
+                android:layout_marginLeft="2dp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <LinearLayout
-                android:id="@+id/cardDetail"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="10dp">
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="2dp"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/pName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="15sp"
-
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/location1"
+                    android:layout_width="19dp"
+                    android:layout_height="21dp"
+                    android:adjustViewBounds="true"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/location" />
 
                 <TextView
                     android:id="@+id/pAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Chandkheda,Ahmedabad"
+                    android:textSize="12sp"
+                    android:textColor="#004643" />
 
-                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="2dp">
+
+                <ImageView
+                    android:id="@+id/rupee"
+                    android:layout_width="19dp"
+                    android:layout_height="21dp"
+                    android:adjustViewBounds="true"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/fa_rupee" />
 
                 <TextView
                     android:id="@+id/pPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp" />
+                    android:text="4000/month"
+                    android:textSize="12sp"
+                    android:textColor="#004643" />
+            </LinearLayout>
 
-                <TextView
-                    android:id="@+id/pBed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="12sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:id="@+id/shared"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="2dp"
+                android:textSize="12sp"
+                android:textColor="#004643"
+                android:text="Room: SIngle + Shared"/>
 
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="2dp">
 
+                <ImageView
+                    android:id="@+id/wifi1"
+                    android:layout_width="19dp"
+                    android:layout_height="21dp"
+                    android:adjustViewBounds="true"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/wifi" />
+
+                <ImageView
+                    android:id="@+id/ac1"
+                    android:layout_width="19dp"
+                    android:layout_height="21dp"
+                    android:adjustViewBounds="true"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ac" />
+
+                <ImageView
+                    android:id="@+id/laundry1"
+                    android:layout_width="19dp"
+                    android:layout_height="21dp"
+                    android:adjustViewBounds="true"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/laundry" />
+
+                <ImageView
+                    android:id="@+id/food"
+                    android:layout_width="19dp"
+                    android:layout_height="21dp"
+                    android:adjustViewBounds="true"
+                    android:padding="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/food" />
 
             </LinearLayout>
 
-        </LinearLayout>
 
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

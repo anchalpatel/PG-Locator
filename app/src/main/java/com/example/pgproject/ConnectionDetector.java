@@ -1,4 +1,4 @@
-package com.ambaitsystem.onlinetransfer.app;
+package com.example.pgproject;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
