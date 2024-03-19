@@ -5,6 +5,12 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">#00FFFFFF</item>
     </style>
-
+    <style name="facilitiesCard">
+        <item name="android:layout_width">175dp</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="background">@color/cardbg</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_margin">7dp</item>
+    </style>
     <style name="Theme.PgProject" parent="Base.Theme.PgProject" />
 </resources>
