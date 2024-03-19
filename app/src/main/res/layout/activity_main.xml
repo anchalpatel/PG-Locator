@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/white">
 
     <!-- Your existing layout content -->
     <LinearLayout
@@ -27,7 +28,6 @@
         android:layout_marginTop="67dp"
         android:background="@drawable/rounded_top_rectangle">
 
-        <!-- Your existing layout content -->
         <TextView
             android:layout_width="198dp"
             android:layout_height="50dp"
@@ -36,10 +36,9 @@
             android:layout_marginRight="50dp"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:textColor="#474646"
+            android:textColor="#031470"
             android:text="A Welcoming Haven Your Ideal PG Home" />
 
-        <!-- Your existing layout content -->
         <RelativeLayout
             android:id="@+id/searchRectangle"
             android:layout_width="match_parent"
@@ -53,16 +52,18 @@
             <!-- AutoCompleteTextView -->
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteTextView"
-                android:layout_width="800dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Search..."
                 android:completionThreshold="1"
-                android:textColorHint="#7f7777"
+                android:textColorHint="@color/colorPrimary"
+                android:textColor="@color/colorPrimary"
                 android:background="@drawable/rounded_border"
                 android:paddingStart="16dp"
-                android:paddingEnd="56dp" /> <!-- Adjust padding to increase touch area -->
-
-            <!-- ImageView for search -->
+                android:paddingEnd="56dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                />
             <ImageView
                 android:id="@+id/search"
                 android:layout_width="50dp"
@@ -70,8 +71,10 @@
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:padding="8dp"
+                android:tint="@color/colorPrimary"
                 android:src="@drawable/searchimg"
-                android:clickable="true" />
+                android:clickable="true"
+                android:contentDescription="Search button" />
 
         </RelativeLayout>
 
@@ -79,7 +82,7 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="140dp"
+            android:layout_marginTop="150dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:gravity="center_horizontal">
@@ -87,26 +90,27 @@
             <!-- CheckBox for Boys -->
             <CheckBox
                 android:id="@+id/checkBoxBoys"
-                android:layout_width="65dp"
-                android:layout_height="29dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="32dp"
+                android:layout_marginRight="32dp"
                 android:text="Boys"
                 android:textStyle="bold"
-                android:textColor="#7f7777"
+                android:textColor="#031470"
                 android:textSize="12sp"
-                android:layout_alignParentStart="true" />
+                />
 
             <!-- CheckBox for Girls -->
             <CheckBox
                 android:id="@+id/checkBoxGirls"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="42dp"
+                android:layout_marginLeft="47dp"
                 android:layout_alignParentEnd="true"
                 android:layout_toEndOf="@id/checkBoxBoys"
                 android:text="Girls"
                 android:textStyle="bold"
-                android:textColor="#7f7777"
+                android:textColor="#031470"
                 android:textSize="12sp" />
         </RelativeLayout>
     </RelativeLayout>
@@ -120,12 +124,12 @@
         android:layout_marginTop="20dp" />
 
     <!-- ProgressBar to indicate loading -->
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:visibility="gone" />-->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
     <!-- TextView to display when no data found -->
     <TextView

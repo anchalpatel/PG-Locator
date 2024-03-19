@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -61,12 +63,14 @@ public class MainActivity extends AppCompatActivity {
     TextView centerTextView;
     Boolean isInternetPresent = false;
     ConnectionDetector cd;
+    TextView noData;
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
         initViews();
         context = this;
         fetchDataFromServer(currentPage, "$", "$", "$");
@@ -78,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 //        progressBar.setVisibility(View.VISIBLE);
         search = findViewById(R.id.search);
         centerTextView = findViewById(R.id.centerTextView);
+        //noData = findViewById(R.id.noData);
 
         recyclerView = findViewById(R.id.pgList);
         autoCompleteTextView = findViewById(R.id.autoCompleteTextView);
@@ -171,6 +176,11 @@ public class MainActivity extends AppCompatActivity {
     private void fetchDataFromServer(int page, String collegeName, String isBoys, String isGirls) {
         cd = new ConnectionDetector(context);
         isInternetPresent = cd.isConnectingToInternet();
+        if(!isInternetPresent){
+            noData.setText(R.string.noInternet);
+            noData.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.GONE);
+        }
         pgList.clear(); // Clear the list first
         // check for Internet status
         if (isInternetPresent) {
@@ -183,21 +193,31 @@ public class MainActivity extends AppCompatActivity {
                     try {
 
                         JSONObject obj = new JSONObject(response);
-                        // check for error flag
-                        if (obj.getBoolean("error") == false) {
-                            //Get random_users And show it in Top Horizontal View
-                            JSONArray random_usersarray = obj.getJSONArray("random_users");
+                        if(obj.length()==0){
+                            noData.setText(R.string.noDataFound);
+                            noData.setVisibility(View.VISIBLE);
+                            recyclerView.setVisibility(View.GONE);
+                            pgList.clear();
+                        }
+                        else {
+                            // check for error flag
+                            if (obj.getBoolean("error") == false) {
+                                //Get random_users And show it in Top Horizontal View
+                                JSONArray random_usersarray = obj.getJSONArray("random_users");
 
-                            for (int i = 0; i < random_usersarray.length(); i++) {
-                                JSONObject randomuserObj = (JSONObject) random_usersarray.get(i);
-                                PGDetailsModel pgDetails = parseJsonToPGDetailsModel(randomuserObj);
-                                pgList.add(pgDetails);
+
+                                for (int i = 0; i < random_usersarray.length(); i++) {
+                                    JSONObject randomuserObj = (JSONObject) random_usersarray.get(i);
+                                    PGDetailsModel pgDetails = parseJsonToPGDetailsModel(randomuserObj);
+                                    pgList.add(pgDetails);
+                                }
+                                adapter.notifyDataSetChanged();
+
+
+                            } else {
+                                // error in fetching chat rooms
+                                Toast.makeText(context, "Check Internet Connection.#1", Toast.LENGTH_SHORT).show();
                             }
-                            adapter.notifyDataSetChanged();
-                            /////////////////////////////////////////////////////////
-                        } else {
-                            // error in fetching chat rooms
-                            Toast.makeText(context, "Check Internet Connection.#1", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (JSONException e)

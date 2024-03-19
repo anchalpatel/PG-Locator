@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,7 +25,7 @@ public class PgDescriptionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pg_description);
-
+        getWindow().setStatusBarColor(Color.TRANSPARENT);
         String pgDetailsJson = getIntent().getStringExtra("pgModelJson");
 
         // Check if pgDetailsJson is not null
@@ -44,51 +45,50 @@ public class PgDescriptionActivity extends AppCompatActivity {
             TextView price = findViewById(R.id.pg_rent);
             price.setText(String.valueOf(pgDetails.getPgPrice()));
 
-            TextView pgAddress = findViewById(R.id.pg_add);
-            pgAddress.setText(pgDetails.getPgAddress());
+
 
             // Handle visibility of TextViews based on pgDetails properties
 
-            if (!pgDetails.getWifi().equals("1")) {
+            if (!pgDetails.getWifi().equals("0")) {
                 LinearLayout wiContainer = findViewById(R.id.wifiContainer);
                 wiContainer.setVisibility(View.GONE); // Set visibility to GONE to remove the view from the layout
             }
 
-            if (!pgDetails.getAc().equals("1")) {
+            if (!pgDetails.getAc().equals("0")) {
                 LinearLayout acContainer = findViewById(R.id.acContainer);
                 acContainer.setVisibility(View.GONE);
             }
 
-            if (!pgDetails.getFood().equals("1")) {
+            if (!pgDetails.getFood().equals("0")) {
                 LinearLayout tiffinContainer = findViewById(R.id.foodContainer);
                 tiffinContainer.setVisibility(View.GONE);
             }
 
-            if (!pgDetails.getWashingMachine().equals("1")) {
+            if (!pgDetails.getWashingMachine().equals("0")) {
                 LinearLayout laundryContainer = findViewById(R.id.laundryContainer);
                 laundryContainer.setVisibility(View.GONE);
             }
-            if (pgDetails.getForBoys().equals("1")) {
+            if (pgDetails.getForBoys().equals("0")) {
                 LinearLayout forBoys = findViewById(R.id.forBoys);
                 forBoys.setVisibility(View.GONE);
             }
 
-            if (pgDetails.getForGirls().equals("1")) {
+            if (pgDetails.getForGirls().equals("0")) {
                 LinearLayout forGirls = findViewById(R.id.forGirls);
                 forGirls.setVisibility(View.GONE);
             }
 
-            if (pgDetails.getSingleBed().equals("1")) {
+            if (pgDetails.getSingleBed().equals("0")) {
                 CardView singleBed = findViewById(R.id.single);
                 singleBed.setVisibility(View.GONE);
             }
 
-            if (pgDetails.getForGirls().equals("1")) {
+            if (pgDetails.getForGirls().equals("0")) {
                 CardView goubleBed = findViewById(R.id.double_sharing);
                 goubleBed.setVisibility(View.GONE);
             }
 
-            if (pgDetails.getMultipleBed().equals("1")) {
+            if (pgDetails.getMultipleBed().equals("0")) {
                 CardView multipleBed = findViewById(R.id.four_sharing);
                 multipleBed.setVisibility(View.GONE);
             }
@@ -100,7 +100,7 @@ public class PgDescriptionActivity extends AppCompatActivity {
             TextView address = findViewById(R.id.pgAddress);
             address.setText(pgDetails.getPgAddress());
 
-            Button call = findViewById(R.id.call);
+            ImageView call = findViewById(R.id.call);
             call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

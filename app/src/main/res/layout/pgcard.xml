@@ -62,7 +62,8 @@
                 android:text="Urban Heaven PG"
                 android:layout_marginLeft="2dp"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
                     android:adjustViewBounds="true"
                     android:padding="3dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/location" />
+                    android:src="@drawable/location"
+                    app:tint="@color/black" />
 
                 <TextView
                     android:id="@+id/pAddress"
@@ -86,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:text="Chandkheda,Ahmedabad"
                     android:textSize="12sp"
-                    android:textColor="#004643" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -103,7 +105,8 @@
                     android:adjustViewBounds="true"
                     android:padding="3dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/fa_rupee" />
+                    android:src="@drawable/fa_rupee"
+                    app:tint="@color/black" />
 
                 <TextView
                     android:id="@+id/pPrice"
@@ -111,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:text="4000/month"
                     android:textSize="12sp"
-                    android:textColor="#004643" />
+                    android:textColor="@color/black" />
             </LinearLayout>
 
             <TextView
@@ -122,7 +125,7 @@
                 android:layout_marginTop="7dp"
                 android:layout_marginLeft="2dp"
                 android:textSize="12sp"
-                android:textColor="#004643"
+                android:textColor="@color/black"
                 android:text="Room: SIngle + Shared"/>
 
             <LinearLayout
@@ -138,7 +141,8 @@
                     android:adjustViewBounds="true"
                     android:padding="3dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/wifi" />
+                    android:src="@drawable/wifi"
+                    app:tint="@color/black" />
 
                 <ImageView
                     android:id="@+id/ac1"
@@ -147,6 +151,7 @@
                     android:adjustViewBounds="true"
                     android:padding="3dp"
                     android:scaleType="fitXY"
+                    app:tint="@color/black"
                     android:src="@drawable/ac" />
 
                 <ImageView
@@ -156,7 +161,8 @@
                     android:adjustViewBounds="true"
                     android:padding="3dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/laundry" />
+                    android:src="@drawable/laundry"
+                    app:tint="@color/black" />
 
                 <ImageView
                     android:id="@+id/food"
@@ -165,7 +171,8 @@
                     android:adjustViewBounds="true"
                     android:padding="3dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/food" />
+                    android:src="@drawable/food"
+                    app:tint="@color/black" />
 
             </LinearLayout>
 
