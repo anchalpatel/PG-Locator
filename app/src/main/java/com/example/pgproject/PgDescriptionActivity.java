@@ -83,7 +83,7 @@ public class PgDescriptionActivity extends AppCompatActivity {
                 singleBed.setVisibility(View.GONE);
             }
 
-            if (pgDetails.getForGirls().equals("0")) {
+            if (pgDetails.getDoubleBed().equals("0")) {
                 CardView goubleBed = findViewById(R.id.double_sharing);
                 goubleBed.setVisibility(View.GONE);
             }
@@ -93,9 +93,16 @@ public class PgDescriptionActivity extends AppCompatActivity {
                 multipleBed.setVisibility(View.GONE);
             }
 
+            if(pgDetails.getSingleBed().equals("0") && pgDetails.getMultipleBed().equals("0") && pgDetails.getDoubleBed().equals("0")){
 
+            }
             TextView phoneNumber = findViewById(R.id.phone_no);
-            phoneNumber.setText(String.valueOf(pgDetails.getPgNumber()));
+            if(pgDetails.getPgNumber().equals(0)){
+                phoneNumber.setText("Number Not Available");
+            }
+            else{
+                phoneNumber.setText(String.valueOf(pgDetails.getPgNumber()));
+            }
 
             TextView address = findViewById(R.id.pgAddress);
             address.setText(pgDetails.getPgAddress());

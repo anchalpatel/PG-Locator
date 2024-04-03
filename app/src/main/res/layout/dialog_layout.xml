@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- dialog_layout.xml -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        tools:ignore="MissingConstraints">
+
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search..."
+            android:singleLine="true"
+
+            android:completionThreshold="1"
+            android:textColorHint="@color/colorPrimary"
+            android:textColor="@color/colorPrimary"
+            android:background="@drawable/rounded_border"
+            android:paddingStart="16dp"
+            android:paddingEnd="56dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            />
+
+
+
+        <CheckBox
+            android:id="@+id/checkBox_boys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Boys"/>
+
+        <CheckBox
+            android:id="@+id/checkBox_girls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Girls"/>
+
+        <CheckBox
+            android:id="@+id/checkBox_wifi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WiFi"/>
+
+        <CheckBox
+            android:id="@+id/checkBox_washingMachine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Washing Machine"/>
+
+        <CheckBox
+            android:id="@+id/checkBox_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Food"/>
+
+        <CheckBox
+            android:id="@+id/checkBox_ac"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AC"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

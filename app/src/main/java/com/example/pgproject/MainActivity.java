@@ -154,20 +154,30 @@ public class MainActivity extends AppCompatActivity {
                 isBoysLay = findViewById(R.id.checkBoxBoys);
                 isGirlsLay = findViewById(R.id.checkBoxGirls);
 
-                isBoys = isBoysLay.isChecked() ? 1 : 0;
-                isGirls = isGirlsLay.isChecked() ? 1 : 0;
-                String searchText = autoCompleteTextView.getText().toString();
-                collegeName = searchText;
-                if (!TextUtils.isEmpty(searchText)) {
-                    try {
-                        fetchDataForCollege(searchText,String.valueOf(isBoys), String.valueOf(isGirls));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                        Toast.makeText(MainActivity.this, "Error in search query", Toast.LENGTH_SHORT).show();
+//                isBoys = isBoysLay.isChecked() ? 1 : 0;
+//                isGirls = isGirlsLay.isChecked() ? 1 : 0;
+//                String searchText = autoCompleteTextView.getText().toString();
+//                collegeName = searchText;
+//                if (!TextUtils.isEmpty(searchText)) {
+//                    try {
+//                        fetchDataForCollege(searchText,String.valueOf(isBoys), String.valueOf(isGirls));
+//                    } catch (UnsupportedEncodingException e) {
+//                        e.printStackTrace();
+//                        Toast.makeText(MainActivity.this, "Error in search query", Toast.LENGTH_SHORT).show();
+//                    }
+//                } else {
+//                    Toast.makeText(MainActivity.this, "Please enter a search query", Toast.LENGTH_SHORT).show();
+//                }
+                CustomDialog dialog = new CustomDialog();
+                dialog.showDialog(MainActivity.this, new CustomDialog.DialogListener() {
+                    @Override
+                    public void applyData(String collegeName, int isBoys, int isGirls, int hasWiFi,
+                                          int hasWashingMachine, int hasFood, int hasAC) {
+                        // Use the data as needed
+                        Log.d(TAG, "collegeName" + collegeName + "isBoys" + isBoys + "isGirls" + isGirls + "isWifi" + hasWiFi + "isAC" + hasAC + "isWM" + hasWashingMachine + "isFood" + hasFood);
                     }
-                } else {
-                    Toast.makeText(MainActivity.this, "Please enter a search query", Toast.LENGTH_SHORT).show();
-                }
+                });
+
             }
         });
 
@@ -267,10 +277,10 @@ public class MainActivity extends AppCompatActivity {
         String pgPriceString = jsonObject.getString("pgPrice");
 
         return new PGDetailsModel(
-                jsonObject.getString("id"),
+                jsonObject.getString("pgId"),
                 jsonObject.getString("pgName"),
-                jsonObject.getString("pgForBoys"),
-                jsonObject.getString("pgForGirls"),
+                jsonObject.getString("forBoys"),
+                jsonObject.getString("forGirls"),
                 jsonObject.getString("pgCollege"),
                 jsonObject.getString("pgUniversity"),
                 jsonObject.getString("pgPrice"),
@@ -278,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                 jsonObject.getString("pgNumber"),
                 jsonObject.getString("pImage"),
                 jsonObject.getString("person"),
-                jsonObject.getString("food"),
+                jsonObject.getString("Food"),
                 jsonObject.getString("washingMachine") ,
                 jsonObject.getString("ac"),
                 jsonObject.getString("wifi"),

@@ -66,8 +66,8 @@
                 />
             <ImageView
                 android:id="@+id/search"
-                android:layout_width="50dp"
-                android:layout_height="60dp"
+                android:layout_width="25dp"
+                android:layout_height="35dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:padding="8dp"
