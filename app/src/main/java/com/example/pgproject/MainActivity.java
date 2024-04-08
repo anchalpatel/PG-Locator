@@ -50,16 +50,12 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private ProgressBar progressBar;
     private LinearLayoutManager layoutManager;
-    private boolean isLoading= false;
+    private boolean isScrolling = false;
     private int currentPage = 0;
     private int itemsPerPage = 3;
 
     private int isGirls = 0;
     private int isBoys = 0;
-    private int hasWifi = 0;
-    private int hasAC = 0;
-    private int hasWashingMachine = 0;
-    private int hasFood = 0;
     private String collegeName;
     CheckBox isBoysLay;
     CheckBox isGirlsLay;
@@ -69,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
     ConnectionDetector cd;
     TextView noData;
     Context context;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -109,9 +104,16 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    isScrolling = true;
+                }
+            }
+
+         @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
                 int visibleItemCount = layoutManager.getChildCount();
                 int totalItemCount = layoutManager.getItemCount();
                 int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
@@ -119,8 +121,26 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-
+//        autoCompleteTextView.setOnFocusChangeListener((v, hasFocus) -> {
+//            if (hasFocus) {
+//                autoCompleteTextView.showDropDown();
+//            }
+//        });
+//
+//        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+//            String selectedCollege = (String) parent.getItemAtPosition(position);
+//            isBoysLay = findViewById(R.id.checkBoxBoys);
+//            isGirlsLay = findViewById(R.id.checkBoxGirls);
+//
+//            isBoys = isBoysLay.isChecked() ? 1 : 0;
+//            isGirls = isGirlsLay.isChecked() ? 1 : 0;
+//
+//            try {
+//                fetchDataForCollege(selectedCollege,String.valueOf(isBoys), String.valueOf(isGirls));
+//            } catch (UnsupportedEncodingException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
     private void fetchDataFromServer(int page, String collegeName, String isBoys, String isGirl, String hasWifi, String hasWashingMachine, String hasAcm, String hasFood) {
         cd = new ConnectionDetector(context);
         isInternetPresent = cd.isConnectingToInternet();
-        if (!isInternetPresent) {
+        if(!isInternetPresent){
             noData.setText(R.string.noInternet);
             noData.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
@@ -185,12 +205,13 @@ public class MainActivity extends AppCompatActivity {
                     try {
 
                         JSONObject obj = new JSONObject(response);
-                        if (obj.length() == 0) {
+                        if(obj.length()==0){
                             noData.setText(R.string.noDataFound);
                             noData.setVisibility(View.VISIBLE);
                             recyclerView.setVisibility(View.GONE);
                             pgList.clear();
-                        } else {
+                        }
+                        else {
                             // check for error flag
                             if (obj.getBoolean("error") == false) {
                                 //Get random_users And show it in Top Horizontal View
@@ -211,7 +232,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                         }
 
-                    } catch (JSONException e) {
+                    } catch (JSONException e)
+                    {
                         Toast.makeText(context, "Check Internet Connection.#2" + e.toString(), Toast.LENGTH_SHORT).show();
                     }
 
@@ -222,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse networkResponse = error.networkResponse;
-                    Log.v("Error", "" + error.toString());
+                    Log.v("Error",""+ error.toString());
                     Toast.makeText(context, "Check Internet Connection.#3" + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             }) {
@@ -252,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
     private PGDetailsModel parseJsonToPGDetailsModel(JSONObject jsonObject) throws JSONException {
         String pgPriceString = jsonObject.getString("pgPrice");
 
@@ -268,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                 jsonObject.getString("pImage"),
                 jsonObject.getString("person"),
                 jsonObject.getString("Food"),
-                jsonObject.getString("washingMachine"),
+                jsonObject.getString("washingMachine") ,
                 jsonObject.getString("ac"),
                 jsonObject.getString("wifi"),
                 jsonObject.getString("singleBed"),
@@ -349,5 +372,8 @@ public class MainActivity extends AppCompatActivity {
 
         return collegeNames;
     }
-}
 
+//    private void fetchDataForCollege(String collegeName, String isBoys, String isGirls) throws UnsupportedEncodingException {
+//        fetchDataFromServer(currentPage, collegeName,  isBoys,  isGirls);
+//    }
+}
