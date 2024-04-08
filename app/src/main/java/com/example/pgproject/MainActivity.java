@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setStatusBarColor(Color.TRANSPARENT);
         initViews();
         context = this;
-        fetchDataFromServer(currentPage, "$", "$", "$");
+        fetchDataFromServer(currentPage, "$", "$", "$", "$", "$", "$", "$");
         fetchCollegeNames();
     }
 
@@ -126,26 +126,26 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        });
-        autoCompleteTextView.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) {
-                autoCompleteTextView.showDropDown();
-            }
-        });
-
-        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
-            String selectedCollege = (String) parent.getItemAtPosition(position);
-            isBoysLay = findViewById(R.id.checkBoxBoys);
-            isGirlsLay = findViewById(R.id.checkBoxGirls);
-
-            isBoys = isBoysLay.isChecked() ? 1 : 0;
-            isGirls = isGirlsLay.isChecked() ? 1 : 0;
-
-            try {
-                fetchDataForCollege(selectedCollege,String.valueOf(isBoys), String.valueOf(isGirls));
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
-        });
+//        autoCompleteTextView.setOnFocusChangeListener((v, hasFocus) -> {
+//            if (hasFocus) {
+//                autoCompleteTextView.showDropDown();
+//            }
+//        });
+//
+//        autoCompleteTextView.setOnItemClickListener((parent, view, position, id) -> {
+//            String selectedCollege = (String) parent.getItemAtPosition(position);
+//            isBoysLay = findViewById(R.id.checkBoxBoys);
+//            isGirlsLay = findViewById(R.id.checkBoxGirls);
+//
+//            isBoys = isBoysLay.isChecked() ? 1 : 0;
+//            isGirls = isGirlsLay.isChecked() ? 1 : 0;
+//
+//            try {
+//                fetchDataForCollege(selectedCollege,String.valueOf(isBoys), String.valueOf(isGirls));
+//            } catch (UnsupportedEncodingException e) {
+//                throw new RuntimeException(e);
+//            }
+//        });
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +173,15 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void applyData(String collegeName, int isBoys, int isGirls, int hasWiFi,
                                           int hasWashingMachine, int hasFood, int hasAC) {
+                        String isBoysStr = isBoys == 1 ? "1" : "0";
+                        String isGirlsStr = isGirls == 1 ? "1" : "0";
+                        String isWifi = hasWiFi == 1 ? "1" : "0";
+                        String isWashingMachine = hasWashingMachine == 1 ? "1" : "0";
+                        String isAc = hasAC == 1 ? "1" : "0";
+                        String isFood = hasFood == 1 ? "1" : "0";
+                        fetchDataFromServer(1, collegeName, isBoysStr, isGirlsStr, isWifi, isWashingMachine, isAc, isFood);
                         // Use the data as needed
-                        Log.d(TAG, "collegeName" + collegeName + "isBoys" + isBoys + "isGirls" + isGirls + "isWifi" + hasWiFi + "isAC" + hasAC + "isWM" + hasWashingMachine + "isFood" + hasFood);
+                        //Log.d(TAG, "collegeName" + collegeName + "isBoys" + isBoys + "isGirls" + isGirls + "isWifi" + hasWiFi + "isAC" + hasAC + "isWM" + hasWashingMachine + "isFood" + hasFood);
                     }
                 });
 
@@ -183,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void fetchDataFromServer(int page, String collegeName, String isBoys, String isGirls) {
+    private void fetchDataFromServer(int page, String collegeName, String isBoys, String isGirl, String hasWifi, String hasWashingMachine, String hasAcm, String hasFood) {
         cd = new ConnectionDetector(context);
         isInternetPresent = cd.isConnectingToInternet();
         if(!isInternetPresent){
@@ -371,7 +378,7 @@ public class MainActivity extends AppCompatActivity {
         return collegeNames;
     }
 
-    private void fetchDataForCollege(String collegeName, String isBoys, String isGirls) throws UnsupportedEncodingException {
-        fetchDataFromServer(currentPage, collegeName,  isBoys,  isGirls);
-    }
+//    private void fetchDataForCollege(String collegeName, String isBoys, String isGirls) throws UnsupportedEncodingException {
+//        fetchDataFromServer(currentPage, collegeName,  isBoys,  isGirls);
+//    }
 }
