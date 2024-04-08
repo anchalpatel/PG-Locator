@@ -102,30 +102,25 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-//        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
-//                    isScrolling = true;
-//                }
-//            }
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+                    isScrolling = true;
+                }
+            }
 
-           // @Override
-//            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-//                super.onScrolled(recyclerView, dx, dy);
-//                int visibleItemCount = layoutManager.getChildCount();
-//                int totalItemCount = layoutManager.getItemCount();
-//                int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-//
-//                if (isScrolling && (visibleItemCount + firstVisibleItemPosition == totalItemCount)
-//                        && !pgList.isEmpty()) {
-//                    isScrolling = false;
-//                    currentPage++;
-//                    fetchDataFromServer(currentPage, collegeName, String.valueOf(isBoys), String.valueOf(isGirls));
-//                }
-//            }
-//        });
+         @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int visibleItemCount = layoutManager.getChildCount();
+                int totalItemCount = layoutManager.getItemCount();
+                int firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+
+
+            }
+        });
 //        autoCompleteTextView.setOnFocusChangeListener((v, hasFocus) -> {
 //            if (hasFocus) {
 //                autoCompleteTextView.showDropDown();
